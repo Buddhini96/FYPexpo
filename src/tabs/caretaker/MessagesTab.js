@@ -37,6 +37,11 @@ export default function MessagesTab({route,navigation}) {
 
                 </Right>
             </Header>
+
+            <Content>
+            <Text>My new text </Text>
+
+            </Content>
         </Container>
 
 
