@@ -1,0 +1,12 @@
+{
+  "name": "FypExpo",
+  "displayName": "FypExpo",
+  "expo": {
+    "name": "FypExpo",
+    "slug": "FypExpo",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
