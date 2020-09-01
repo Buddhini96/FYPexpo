@@ -32,55 +32,8 @@ export default function PatientsTab({navigation}) {
     {
       id: 3,
       name: 'Robby Doghartie',
-    },
-    {
-      id: 4,
-      name: 'Enid Lindup',
-    },
-    {
-      id: 5,
-      name: 'Sydney Lesek',
-    },
-    {
-      id: 6,
-      name: 'Bren Noddings',
-    },
-    {
-      id: 7,
-      name: 'Courtnay Stockill',
-    },
-    {
-      id: 8,
-      name: 'Weider Vinecombe',
-    },
-    {
-      id: 9,
-      name: 'Lothaire Cabena',
-    },
-    {
-      id: 10,
-      name: 'Letisha Spragge',
-    },
-    {
-      id: 11,
-      name: 'Barrie Jaques',
-    },
-    {
-      id: 12,
-      name: 'Quill Weinham',
-    },
-    {
-      id: 13,
-      name: 'Ilaire Trodd',
-    },
-    {
-      id: 14,
-      name: 'Winne Iffland',
-    },
-    {
-      id: 15,
-      name: 'Nicolea Spehr',
-    },
+    }
+   
   ];
   const viewPatient = (name) => {
     navigation.navigate(
