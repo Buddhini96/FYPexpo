@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Header, Body, Title, Content, Card, CardItem, Right, Left, Badge,List, Label,
+import {Container, Header, Body, Title, Content, Card, CardItem, Right, Left, List, Label,
     ListItem,
     View} from 'native-base';
 import {Text, RadioButton } from 'react-native-paper';
@@ -125,7 +125,10 @@ return(
      </CardItem>
 
                 
-    <CardItem footer button onPress={() => alert("Your entry has been recorded")}><Body>
+    <CardItem footer button onPress={() => alert("{ "+"Sensory Perception : "+sensory_value+
+                                                ", Moisture : "+moisture_value + ", Activity : "+activity_value+
+                                                ", Mobility : "+mobility_value+ ", Nutrition : "+ nutrition_value
+                                                +", Friction and Shear : "+friction_value+"}")}><Body>
         <Text style={{marginLeft:150, marginBottom:18, color:'#0000ff'}}>Submit</Text></Body></CardItem>    
 </Card>
 </Container>

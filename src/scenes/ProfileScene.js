@@ -15,6 +15,7 @@ import doctorMessagesTab from '../tabs/doctor/MessagesTab';
 import doctorPatients from '../tabs/doctor/PatientsTab';
 import doctorPatientView from '../tabs/doctor/PatientViewTab';
 import BradenRiskAssessment from '../tabs/doctor/BradenRiskAssessmentTab';
+import RepositionHistory from '../tabs/doctor/RepositionHistoryTab';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DrawerContent from '../components/DrawerContent';
@@ -40,6 +41,7 @@ function doctorPatientStack() {
       <Stack.Screen name="doctorPatientsScene" component={doctorPatients} />
       <Stack.Screen name="patientViewScene" component={doctorPatientView} />
       <Stack.Screen name="BradenRiskAssessmentScene" component={BradenRiskAssessment} />
+      <Stack.Screen name="RepositionHistoryScene" component={RepositionHistory} />
     </Stack.Navigator>
   );
 }

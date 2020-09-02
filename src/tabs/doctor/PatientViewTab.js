@@ -1,8 +1,8 @@
 import React from 'react';
-import {Container, Header, Body, Title, Content, Card, CardItem, Right, Left, Badge,List, Label,
+import {Container, Header, Body, Title,  Right, Left, Text, Button,
   ListItem,
   View} from 'native-base';
-import { Modal, Portal, Text, Button, Provider,RadioButton } from 'react-native-paper';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function PatientViewTab({route, navigation}) {
@@ -11,7 +11,13 @@ export default function PatientViewTab({route, navigation}) {
   const BradenRiskAssessment = (name) => {
     navigation.navigate(
       'BradenRiskAssessmentScene',
-      {name: name},
+      //TODO: mock parameter sent to PatientViewScene. All the  reposition data needs to be fetched before that
+    );
+  };
+
+  const RepositionHistory = (name) => {
+    navigation.navigate(
+      'RepositionHistoryScene',
       //TODO: mock parameter sent to PatientViewScene. All the  reposition data needs to be fetched before that
     );
   };
@@ -30,8 +36,16 @@ export default function PatientViewTab({route, navigation}) {
           </Right>
         </Header>    
   
-            <Button style={{marginTop: 75}} onPress={BradenRiskAssessment}>
-              Assess Patient's Ulcer Risk
+            <Button transparent style={{marginTop: 40, marginLeft:25 }} onPress={BradenRiskAssessment}>
+              <Text>Assess Patient's Ulcer Risk</Text>
+            </Button>
+
+            <Button transparent style={{marginTop: 10, marginLeft:25 }} onPress={RepositionHistory} >
+              <Text>View Reposition History</Text>
+            </Button>
+
+            <Button transparent style={{marginTop: 10, marginLeft:25 }} >
+              <Text>View Pressure Distribution</Text>
             </Button>
               
     </Container>
