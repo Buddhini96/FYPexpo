@@ -90,6 +90,11 @@ class SignUpScene extends Component {
           </Item>
 
           <Item inlineLabel>
+            <Icon style={styles.icon} name="at" />
+            <Input  placeholder="Email" />
+          </Item>
+
+          <Item inlineLabel>
             <Icon style={styles.icon} name="key" />
             <Input
               secureTextEntry={this.state.secureEntry}
