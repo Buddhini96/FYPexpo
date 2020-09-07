@@ -113,4 +113,4 @@ function LandingTab({route, navigation}) {
 
 export default LandingTab;
 
-const style = StyleSheet.create({});
+

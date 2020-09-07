@@ -36,15 +36,15 @@ export default function PatientViewTab({route, navigation}) {
           </Right>
         </Header>    
   
-            <Button transparent style={{marginTop: 40, marginLeft:25 }} onPress={BradenRiskAssessment}>
+            <Button  style={{marginTop: 40, marginLeft:25 }} onPress={BradenRiskAssessment}>
               <Text>Assess Patient's Ulcer Risk</Text>
             </Button>
 
-            <Button transparent style={{marginTop: 10, marginLeft:25 }} onPress={RepositionHistory} >
+            <Button  style={{marginTop: 10, marginLeft:25 }} onPress={RepositionHistory} >
               <Text>View Reposition History</Text>
             </Button>
 
-            <Button transparent style={{marginTop: 10, marginLeft:25 }} >
+            <Button  style={{marginTop: 10, marginLeft:25 }} >
               <Text>View Pressure Distribution</Text>
             </Button>
               
