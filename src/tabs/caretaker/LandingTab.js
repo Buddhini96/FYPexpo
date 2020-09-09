@@ -87,23 +87,15 @@ function LandingTab({route, navigation}) {
       <Content style={{padding: 20}}>
         <Card
           style={{
-            height: 300,
+            height: 150,
             justifyContent: 'flex-start',
             borderRadius: 5,
+            marginBottom:100,
+            marginTop:100
           }}>
           <CardItem>
             <Body>
               <Text>Full Name: </Text>
-            </Body>
-          </CardItem>
-          <CardItem>
-            <Body>
-              <Text>Registration ID : </Text>
-            </Body>
-          </CardItem>
-          <CardItem>
-            <Body>
-              <Text>Age: </Text>
             </Body>
           </CardItem>
           <CardItem>

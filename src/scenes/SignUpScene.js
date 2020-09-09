@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import {StyleSheet, Modal} from 'react-native';
+import { Text,  Modal } from 'react-native';
 import {
   Picker,
   Form,
-  Item,
-  Text,
   Button,
+  Item,
   Container,
   Input,
   Label,
@@ -19,6 +18,7 @@ import {
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {styles} from '../styles/SignUpStyles';
+import { TextInput } from 'react-native-paper';
 
 class SignUpScene extends Component {
   state = {
@@ -26,7 +26,15 @@ class SignUpScene extends Component {
     checked: false,
     secureEntry: true,
     modalVisible: false,
+    username: false,
+    password: '',
+    repassword:'',
+    email:'',
+    phoneno: 123456,
+    validationSuccess: false
+    
   };
+  
 
   changeChecked = () => {
     this.setState({checked: !this.state.checked});
@@ -37,6 +45,30 @@ class SignUpScene extends Component {
       selected: value,
     });
   };
+
+  formValidation = () =>{
+    const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*$/;
+    const phonenumber = /^\d{10}$/;
+    if(!this.state.username){
+      alert("Enter a Username")
+    }
+    else if (!(this.state.phoneno.match(phonenumber))){
+      alert("Enter a valid phone number : "+this.state.phoneno)
+    }    
+    else if (reg.test(this.state.email) === false){
+      alert("This is an invalid email : "+ this.state.email);
+    }
+    else if(!this.state.password === this.state.repassword){
+      alert("Re-Entered Password do not match");
+    }
+    else{
+      alert("You Signed up");
+    }
+      
+  };
+    
+    
+  
 
   render() {
     return (
@@ -81,17 +113,25 @@ class SignUpScene extends Component {
 
           <Item inlineLabel>
             <Icon style={styles.icon} name="user" />
-            <Input placeholder="Username" />
+            <Input placeholder="Username" 
+                   value={this.state.username}
+                   onChangeText={(username) => this.setState({username})}/>
           </Item>
+          
+          
 
           <Item inlineLabel>
             <Icon style={styles.icon} name="phone-square" />
-            <Input keyboardType="number-pad" placeholder="Phone Number" />
+            <Input keyboardType="number-pad" placeholder="Phone Number"
+            value={this.state.phoneno}
+            onChangeText={(phoneno) => this.setState({phoneno})} />
           </Item>
 
           <Item inlineLabel>
             <Icon style={styles.icon} name="at" />
-            <Input  placeholder="Email" />
+            <Input  placeholder="Email"
+            value={this.state.email}
+            onChangeText={(email) => this.setState({email})} />
           </Item>
 
           <Item inlineLabel>
@@ -99,6 +139,8 @@ class SignUpScene extends Component {
             <Input
               secureTextEntry={this.state.secureEntry}
               placeholder="Password"
+              value={this.state.password}
+              onChangeText={(password) => this.setState({password})}
             />
             <Button
               transparent
@@ -119,7 +161,10 @@ class SignUpScene extends Component {
             <Input
               secureTextEntry={this.state.secureEntry}
               placeholder="Re-Enter Password"
+              value={this.state.repassword}
+              onChangeText={(repassword) => this.setState({repassword})}
             />
+
           </Item>
 
           <ListItem>
@@ -141,9 +186,15 @@ class SignUpScene extends Component {
             </Body>
           </ListItem>
 
-          <Button primary block style={styles.button}>
+          {this.state.checked ? (
+            <Button primary block style={styles.button} onPress={this.formValidation} >
             <Text style={styles.buttonText}>Sign Up</Text>
-          </Button>
+            </Button>
+            ) : (
+            <Button disabled style={styles.button} >
+                <Text style={{marginLeft:55}}>Sign Up</Text>
+            </Button>
+          )}
         </Form>
       </Container>
     );
@@ -152,3 +203,8 @@ class SignUpScene extends Component {
 
 export default SignUpScene;
 
+//onPress={() => alert("Username is " + this.state.username)}
+//
+//<Icon name='close-circle' />
+
+ 

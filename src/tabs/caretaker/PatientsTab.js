@@ -104,6 +104,7 @@ export default function PatientsTab({navigation}) {
         
       </View>
       </Content>
+      
     </Container>
   );
 }
