@@ -7,7 +7,6 @@ import {
   Content,
   Card,
   CardItem,
-  Badge,
   Right,
   Left,
   Text,
@@ -15,7 +14,7 @@ import {
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-function MessagesTab({navigation}) {
+function ProfileTab({navigation}) {
   return (
     <Container>
       <Header>
@@ -27,14 +26,16 @@ function MessagesTab({navigation}) {
           </Button>
         </Left>
         <Body>
-          <Title style={{textTransform: 'capitalize'}}>Messages</Title>
+          <Title style={{textTransform: 'capitalize'}}>My Profile</Title>
         </Body>
         <Right>
-          <Icon name="envelope" style={{fontSize: 30, color: '#e4e213'}} />
+          <Icon name="user" style={{fontSize: 30, color: 'white'}} />
         </Right>
       </Header>
     </Container>
   );
 }
 
-export default MessagesTab;
+export default ProfileTab;
+
+

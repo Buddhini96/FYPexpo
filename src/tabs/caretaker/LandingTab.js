@@ -1,3 +1,4 @@
+
 import React, {useEffect} from 'react';
 import {
   Container,
@@ -10,10 +11,12 @@ import {
   Right,
   Left,
   Text,
-  Button,View
+  Button,
+  View,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {Alert, StyleSheet,Image} from 'react-native';
+import {Alert, StyleSheet, Image} from 'react-native';
+import Img from '../../images/profile_pic.png';
 
 function LandingTab({route, navigation}) {
   const {param} = route.params;
@@ -50,14 +53,10 @@ function LandingTab({route, navigation}) {
     <Container>
       <Header>
         <Left>
-          <Button>
-            <Icon
-              name="reorder"
-              style={{fontSize: 30, color: 'white'}}
-              onPress={() => {
-                navigation.toggleDrawer();
-              }}
-            />
+          <Button
+            style={{width: 50, justifyContent: 'center'}}
+            onPress={() => navigation.toggleDrawer()}>
+            <Icon name="reorder" style={{fontSize: 30, color: 'white'}} />
           </Button>
         </Left>
         <Body>
@@ -66,40 +65,26 @@ function LandingTab({route, navigation}) {
         <Right />
       </Header>
 
-
-
-
-
-
       <View>
-          <View style={styles.header}>
-            <View style={styles.headerContent}>
-                <Image style={styles.avatar}
-                  source={{uri: 'https://bootdey.com/img/Content/avatar/avatar1.png'}}/>
+        <View style={styles.header}>
+          <View style={styles.headerContent}>
+            <Image style={styles.avatar} source={Img} />
 
-                 <Text style={{fontWeight: 'bold', fontSize: 35,color:'white'}}>
+            <Text style={{fontWeight: 'bold', fontSize: 35, color: 'white'}}>
               {param.username}{' '}
             </Text>
-            </View>
           </View>
-
-    
+        </View>
       </View>
-      
 
       <Content style={{padding: 20}}>
         <Card
           style={{
-            height: 600,
-            justifyContent: 'space-around',
+            height: 200,
+            justifyContent: 'flex-start',
             borderRadius: 5,
           }}>
-          
-           <CardItem>
-            <Body>
-              <Text>Full Name: </Text>
-            </Body>
-          </CardItem>
+         
           <CardItem>
             <Body>
               <Text>Registration ID : </Text>
@@ -120,10 +105,19 @@ function LandingTab({route, navigation}) {
               <Text>Age: </Text>
             </Body>
           </CardItem>
-         
-         
-         
         </Card>
+        <View style={{margin: 15}}>
+          <Button
+            block
+            style={{alignSelf: 'center', padding: 5, borderRadius: 5}}
+            onPress={() => navigation.navigate('editTab')}>
+            <Icon
+              name="edit"
+              style={{fontSize: 20, color: 'white', paddingLeft: 10}}
+            />
+            <Text>Edit</Text>
+          </Button>
+        </View>
       </Content>
     </Container>
   );
@@ -131,13 +125,12 @@ function LandingTab({route, navigation}) {
 
 export default LandingTab;
 
-
 const styles = StyleSheet.create({
-  header:{
-    backgroundColor: "#00BFFF",
+  header: {
+    backgroundColor: '#00BFFF',
   },
-  headerContent:{
-    padding:30,
+  headerContent: {
+    padding: 30,
     alignItems: 'center',
   },
   avatar: {
@@ -145,9 +138,7 @@ const styles = StyleSheet.create({
     height: 130,
     borderRadius: 63,
     borderWidth: 4,
-    borderColor: "white",
-    marginBottom:10,
+    borderColor: 'white',
+    marginBottom: 10,
   },
-
- 
 });

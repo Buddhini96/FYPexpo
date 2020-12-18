@@ -20,12 +20,21 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {styles} from '../styles/SignUpStyles';
 
+
 class SignUpScene extends Component {
   state = {
-    selected: undefined,
-    checked: false,
     secureEntry: true,
     modalVisible: false,
+    selected: undefined,
+    checked: false,
+    fcmToken: '',
+    username: '',
+    firstName:'',
+    lastName:'',
+    phoneNumber: '',
+    email: '',
+    password: '',
+    reEnterPassword: '',
   };
 
   changeChecked = () => {
@@ -38,6 +47,30 @@ class SignUpScene extends Component {
     });
   };
 
+  beforeSubmit=()=>{
+     
+    var data = JSON.stringify({
+      username: this.state.username,
+      password: this.state.password,
+      email: this.state.email,
+      first_name: this.state.firstName,
+      last_name: this.state.lastName,
+    });
+
+    var requestOptions = {
+      method: 'POST',
+      headers:  {"Content-Type": "application/json"},
+      body: data,
+      redirect: 'follow'
+    };
+
+    fetch("https://prevelcer.herokuapp.com/api/register/", requestOptions)
+      .then(response => response)
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+
+  }
+
   render() {
     return (
       <Container style={styles.top}>
@@ -45,11 +78,13 @@ class SignUpScene extends Component {
           <Container>
             <Header>
               <Left>
-              <Button transparent onPress={() => {
-                this.setState({modalVisible: false});
-              }}>
-              <Icon style={{fontSize:20}} name="arrow-left"/>
-              </Button>
+                <Button
+                  transparent
+                  onPress={() => {
+                    this.setState({modalVisible: false});
+                  }}>
+                  <Icon style={{fontSize: 20}} name="arrow-left" />
+                </Button>
               </Left>
               <Body>
                 <Title>Terms & Conditions</Title>
@@ -73,20 +108,51 @@ class SignUpScene extends Component {
               placeholderIconColor="#007aff"
               selectedValue={this.state.selected}
               onValueChange={this.changeValue.bind(this)}>
-              <Picker.Item label="Patient" value="key0" />
-              <Picker.Item label="Caretaker " value="key1" />
-              <Picker.Item label="Doctor" value="key2" />
+              <Picker.Item label="Patient" value="patient" />
+              <Picker.Item label="Caretaker " value="caretaker" />
+              <Picker.Item label="Doctor" value="doctor" />
             </Picker>
           </Item>
 
           <Item inlineLabel>
             <Icon style={styles.icon} name="user" />
-            <Input placeholder="Username" />
+            <Input
+              placeholder="Username"
+              onChangeText={(value) => this.setState({username: value})}
+            />
+          </Item>
+          
+          <Item inlineLabel>
+            <Icon style={styles.icon} name="user-circle" />
+            <Input
+              placeholder="first name"
+              onChangeText={(value) => this.setState({firstName: value})}
+            />
+          </Item>
+
+          <Item inlineLabel>
+            <Icon style={styles.icon} name="user-circle" />
+            <Input
+              placeholder="last name"
+              onChangeText={(value) => this.setState({lastName: value})}
+            />
           </Item>
 
           <Item inlineLabel>
             <Icon style={styles.icon} name="phone-square" />
-            <Input keyboardType="number-pad" placeholder="Phone Number" />
+            <Input
+              keyboardType="number-pad"
+              placeholder="Phone Number"
+              onChangeText={(value) => this.setState({phoneNumber: value})}
+            />
+          </Item>
+
+          <Item inlineLabel>
+            <Icon style={styles.icon} name="envelope" />
+            <Input
+              placeholder="E-mail"
+              onChangeText={(value) => this.setState({email: value})}
+            />
           </Item>
 
           <Item inlineLabel>
@@ -94,6 +160,7 @@ class SignUpScene extends Component {
             <Input
               secureTextEntry={this.state.secureEntry}
               placeholder="Password"
+              onChangeText={(value) => this.setState({password: value})}
             />
             <Button
               transparent
@@ -114,6 +181,7 @@ class SignUpScene extends Component {
             <Input
               secureTextEntry={this.state.secureEntry}
               placeholder="Re-Enter Password"
+              onChangeText={(value) => this.setState({reEnterPassword: value})}
             />
           </Item>
 
@@ -124,11 +192,8 @@ class SignUpScene extends Component {
             />
             <Body>
               <Text style={styles.subText}>
-                I Agree to the{' '}
-                <Text
-                  onPress={() => {
-                    this.setState({modalVisible: true});
-                  }}
+                I Agree to the
+                <Text onPress={() =>this.setState({modalVisible: true})}
                   style={styles.link}>
                   Terms and Conditions
                 </Text>
@@ -136,7 +201,11 @@ class SignUpScene extends Component {
             </Body>
           </ListItem>
 
-          <Button primary block style={styles.button}>
+          <Button
+            primary
+            block
+            style={styles.button}
+            onPress={() => this.beforeSubmit()}>
             <Text style={styles.buttonText}>Sign Up</Text>
           </Button>
         </Form>
@@ -146,4 +215,3 @@ class SignUpScene extends Component {
 }
 
 export default SignUpScene;
-

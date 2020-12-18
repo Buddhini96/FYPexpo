@@ -1,5 +1,3 @@
-
-
 import React, {useEffect} from 'react';
 import {
   Container,
@@ -15,14 +13,27 @@ import {
   Button,
 } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {Alert, StyleSheet,View,Image} from 'react-native';
+import {Alert, StyleSheet, View, Image} from 'react-native';
+import Img from '../../images/profile_pic.png';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function LandingTab({route, navigation}) {
   const {param} = route.params;
   param.isLoggedIn = true;
 
+  const retrieveData = () =>{
+    AsyncStorage.getItem('userToken')
+   .then((value)=>{
+    const user = JSON.stringify(value);
+    Alert.alert('userToken',user);
+   })
+   .catch((error)=>{
+   console.log(error);
+   })
+  };
+
   const logOutHandler = () => {
-    Alert.alert('Log out?', 'You are about to Log out!', [
+    Alert.alert('Log out From Landing Tab?', 'You are about to Log out!', [
       {text: 'Cancel', style: 'cancel', onPress: () => {}},
       {
         text: 'Log Out',
@@ -52,14 +63,10 @@ function LandingTab({route, navigation}) {
     <Container>
       <Header>
         <Left>
-          <Button>
-            <Icon
-              name="reorder"
-              style={{fontSize: 30, color: 'white'}}
-              onPress={() => {
-                navigation.toggleDrawer();
-              }}
-            />
+          <Button
+            style={{width: 50, justifyContent: 'center'}}
+            onPress={() => navigation.toggleDrawer()}>
+            <Icon name="reorder" style={{fontSize: 30, color: 'white'}} />
           </Button>
         </Left>
         <Body>
@@ -68,62 +75,74 @@ function LandingTab({route, navigation}) {
         <Right />
       </Header>
 
-
-
-
-
-
-
       <View style={styles.container}>
-          <View style={styles.header}>
-            <View style={styles.headerContent}>
-                <Image style={styles.avatar}
-                  source={{uri: 'https://bootdey.com/img/Content/avatar/avatar1.png'}}/>
+        <View style={styles.header}>
+          <View style={styles.headerContent}>
+            <Image style={styles.avatar} source={Img} />
 
-                 <Text style={{fontWeight: 'bold', fontSize: 35,color:'white'}}>
+            <Text style={{fontWeight: 'bold', fontSize: 35, color: 'white'}}>
               {param.username}{' '}
             </Text>
-            </View>
           </View>
+        </View>
       </View>
-
 
       <Content style={{padding: 20}}>
         <Card
           style={{
-            height: 600,
-            justifyContent: 'space-around',
+            height: 300,
+            justifyContent: 'flex-start',
             borderRadius: 5,
           }}>
-          <CardItem style={{alignSelf: 'center'}} header>
-           
-          </CardItem>
+          <CardItem style={{alignSelf: 'center'}} header></CardItem>
           <CardItem>
             <Body>
-              <Text>Registration ID : </Text>
+              <Text>Reg ID : 187654</Text>
             </Body>
           </CardItem>
           <CardItem>
             <Body>
-              <Text>Doctor : </Text>
+              <Text>Doctor : Sarath Perera </Text>
             </Body>
           </CardItem>
           <CardItem>
             <Body>
-              <Text>Caretaker : </Text>
+              <Text>Caretaker : Surangi Peiris  </Text>
             </Body>
           </CardItem>
           <CardItem>
             <Body>
-              <Text>Room Number : </Text>
+              <Text>Room No : 5 </Text>
             </Body>
           </CardItem>
           <CardItem>
             <Body>
-              <Text>Status : </Text>
+              <Text>Status : no ulcers </Text>
             </Body>
           </CardItem>
         </Card>
+        <View style={{margin: 15}}>
+          <Button
+            block
+            style={{alignSelf: 'center', padding: 5, borderRadius: 5}}
+            onPress={() => navigation.navigate('editTab')}>
+            <Icon
+              name="edit"
+              style={{fontSize: 20, color: 'white', paddingLeft: 10}}
+            />
+            <Text>Edit</Text>
+          </Button>
+          <Button
+          block
+          style={{alignSelf: 'center', padding: 5, borderRadius: 5,marginTop:5}}
+          onPress={() => retrieveData()}>
+          <Icon
+            name="edit"
+            style={{fontSize: 20, color: 'white', paddingLeft: 10}}
+          />
+          <Text>Show token</Text>
+        </Button>
+        </View>
       </Content>
     </Container>
   );
@@ -132,11 +151,11 @@ function LandingTab({route, navigation}) {
 export default LandingTab;
 
 const styles = StyleSheet.create({
-  header:{
-    backgroundColor: "#00BFFF",
+  header: {
+    backgroundColor: '#00BFFF',
   },
-  headerContent:{
-    padding:30,
+  headerContent: {
+    padding: 30,
     alignItems: 'center',
   },
   avatar: {
@@ -144,10 +163,7 @@ const styles = StyleSheet.create({
     height: 130,
     borderRadius: 63,
     borderWidth: 4,
-    borderColor: "white",
-    marginBottom:10,
+    borderColor: 'white',
+    marginBottom: 10,
   },
- 
- 
 });
-

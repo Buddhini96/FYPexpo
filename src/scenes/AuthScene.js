@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {Text, Alert} from 'react-native';
 import {Picker, Form, Item, Button, Container, Input, Label} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {styles} from '../styles/AuthScStyles';
@@ -9,7 +9,8 @@ export default class AuthScene extends Component {
     selected: 'patient',
     username: '',
     password: '',
-    isLoggedIn:false
+    isLoggedIn: false,
+    token: '',
   };
 
   changeValue = (value) => {
@@ -18,9 +19,29 @@ export default class AuthScene extends Component {
     });
   };
 
-  gotToProfile= ()=>{
-    // TODO: code for checking username and password authorization
-    this.props.navigation.navigate('profile', { screen:'landingTab', params: { param:this.state}});
+  loginHandle = () => {
+    this.props.navigation.navigate('profile', {
+    screen: 'landingTab',
+    params: {param: this.state},
+  });
+};
+
+  async goToProfile() {
+    var requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password,
+      }),
+      redirect: 'follow',
+    };
+
+  
+
+
   }
 
   render() {
@@ -64,7 +85,7 @@ export default class AuthScene extends Component {
             primary
             block
             style={styles.button}
-            onPress={() => this.gotToProfile()}>
+            onPress={() => this.loginHandle()}>
             <Text style={styles.buttonText}> Sign In</Text>
           </Button>
         </Form>
